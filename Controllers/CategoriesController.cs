@@ -28,6 +28,7 @@ namespace MVCCourse.Controllers
                 CategoriesRepository.UpdateCategory(category.CategoryId, category);
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Action = "edit";
 
             return View(category);
         }
@@ -41,11 +42,12 @@ namespace MVCCourse.Controllers
         [HttpPost]
         public IActionResult Add(Category category)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-            CategoriesRepository.AddCategory(category);
+                CategoriesRepository.AddCategory(category);
                 return RedirectToAction(nameof(Index));
             }
+            ViewBag.Action = "add";
             return View(category);
         }
 
